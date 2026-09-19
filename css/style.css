@@ -1,0 +1,339 @@
+/* style.css — SmoothieDev
+   Escrevi pensando em mobile primeiro: as regras aqui em cima valem
+   pro celular, e vou "destravando" coisas conforme a tela cresce
+   lá embaixo, nas media queries. */
+
+/* variáveis de cor e fonte, uso em quase tudo daqui pra frente */
+:root {
+  --cor-fundo-escuro: #1b2e35;
+  --cor-fundo-claro: #f2ede3;
+  --cor-destaque: #d9a544;
+  --cor-destaque-escuro: #b8862f;
+  --cor-texto-claro: #f2ede3;
+  --cor-texto-escuro: #1f2b2e;
+  --cor-texto-suave: #4a5a5e;
+  --cor-borda: #2f4650;
+
+  --fonte-titulo: "Space Grotesk", "Segoe UI", sans-serif;
+  --fonte-corpo: "Inter", "Segoe UI", sans-serif;
+
+  --espaco-sm: 0.75rem;
+  --espaco-md: 1.5rem;
+  --espaco-lg: 3rem;
+  --espaco-xl: 5rem;
+
+  --largura-maxima: 75rem; /* 1200px, controla a largura do conteúdo */
+}
+
+/* reset básico, pra não depender do estilo padrão de cada navegador */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* padding e border não aumentam a largura total */
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--fonte-corpo);
+  font-size: 1rem; /* 16px base — todo o resto usa rem a partir daqui */
+  line-height: 1.6;
+  color: var(--cor-texto-escuro);
+  background-color: var(--cor-fundo-claro);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+h1, h2, h3 {
+  font-family: var(--fonte-titulo);
+  line-height: 1.2;
+}
+
+/* Classe utilitária para centralizar texto/conteúdo (ex: botões isolados) */
+.centralizar {
+  text-align: center;
+}
+
+/* Classe utilitária para limitar e centralizar o conteúdo em todas as páginas */
+.container {
+  width: 100%;
+  max-width: var(--largura-maxima);
+  margin-inline: auto;
+  padding-inline: var(--espaco-md);
+}
+
+/* cabeçalho e menu — no celular fica empilhado, no desktop vira uma linha só (ver media query lá embaixo) */
+.cabecalho {
+  background-color: var(--cor-fundo-escuro);
+  color: var(--cor-texto-claro);
+  padding-block: var(--espaco-sm);
+}
+
+.cabecalho .container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-sm);
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--fonte-titulo);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--cor-texto-claro);
+}
+
+.logo span {
+  color: var(--cor-destaque);
+}
+
+.nav-principal ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--espaco-md);
+}
+
+.nav-principal a {
+  font-weight: 500;
+  padding-block: 0.25rem;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-principal a:hover,
+.nav-principal a[aria-current="page"] {
+  border-bottom-color: var(--cor-destaque);
+  color: var(--cor-destaque);
+}
+
+/* hero, a primeira seção que aparece no topo das páginas */
+.hero {
+  background-color: var(--cor-fundo-escuro);
+  color: var(--cor-texto-claro);
+  padding-block: var(--espaco-xl);
+}
+
+.hero .container {
+  display: grid;
+  gap: var(--espaco-lg);
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: 2rem;
+  margin-bottom: var(--espaco-sm);
+}
+
+.hero p {
+  color: #cfd8da;
+  margin-bottom: var(--espaco-md);
+  max-width: 40rem;
+}
+
+/* botões usados nas páginas todas */
+.botao {
+  display: inline-block;
+  background-color: var(--cor-destaque);
+  color: var(--cor-texto-escuro);
+  font-weight: 600;
+  padding: 0.85rem 1.75rem;
+  border-radius: 0.25rem;
+  border: 2px solid var(--cor-destaque);
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+.botao:hover {
+  background-color: transparent;
+  color: var(--cor-destaque);
+  transform: translateY(-2px);
+}
+
+.botao-secundario {
+  background-color: transparent;
+  color: var(--cor-texto-claro);
+  border-color: var(--cor-texto-claro);
+}
+
+.botao-secundario:hover {
+  background-color: var(--cor-texto-claro);
+  color: var(--cor-texto-escuro);
+}
+
+/* seções genéricas de conteúdo, clara e escura */
+.secao {
+  padding-block: var(--espaco-xl);
+}
+
+.secao-clara {
+  background-color: var(--cor-fundo-claro);
+}
+
+.secao-escura {
+  background-color: var(--cor-fundo-escuro);
+  color: var(--cor-texto-claro);
+}
+
+.secao-titulo {
+  font-size: 1.75rem;
+  margin-bottom: var(--espaco-md);
+  text-align: center;
+}
+
+.secao-subtitulo {
+  color: var(--cor-texto-suave);
+  text-align: center;
+  max-width: 40rem;
+  margin-inline: auto;
+  margin-bottom: var(--espaco-lg);
+}
+
+/* Variante do subtítulo para uso sobre fundo escuro (.secao-escura) */
+.subtitulo-fundo-escuro {
+  color: #cfd8da;
+}
+
+/* grid dos cards de serviço, equipe e case — 1 coluna no celular, mais colunas no desktop */
+.lista-servicos {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espaco-md);
+}
+
+.card {
+  background-color: #fff;
+  border: 1px solid var(--cor-borda);
+  border-radius: 0.5rem;
+  padding: var(--espaco-md);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 0.5rem 1.5rem rgba(27, 46, 53, 0.15);
+  transform: translateY(-4px);
+}
+
+.card h3 {
+  font-size: 1.25rem;
+  margin-bottom: var(--espaco-sm);
+  color: var(--cor-fundo-escuro);
+}
+
+.card p {
+  color: var(--cor-texto-suave);
+}
+
+/* formulário da página de contato */
+
+/* Grid específico da página de Contato: 1 coluna no mobile, 2 no desktop */
+.lista-contato {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 56.25em) {
+  .lista-contato {
+    grid-template-columns: 1.2fr 0.8fr;
+  }
+}
+
+.formulario-contato {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-md);
+  max-width: 35rem;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.campo label {
+  font-weight: 600;
+}
+
+.campo input,
+.campo textarea {
+  font-family: var(--fonte-corpo);
+  font-size: 1rem;
+  padding: 0.75rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: 0.25rem;
+  background-color: #fff;
+  color: var(--cor-texto-escuro);
+}
+
+.campo input:focus,
+.campo textarea:focus {
+  outline: 3px solid var(--cor-destaque);
+  outline-offset: 1px;
+}
+
+/* rodapé */
+.rodape {
+  background-color: var(--cor-fundo-escuro);
+  color: var(--cor-texto-claro);
+  padding-block: var(--espaco-lg);
+  text-align: center;
+}
+
+.rodape .container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-sm);
+  align-items: center;
+}
+
+.rodape a:hover {
+  color: var(--cor-destaque);
+}
+
+/* a partir daqui só telas maiores — tablet e desktop */
+
+/* tablet, a partir de 600px */
+@media (min-width: 37.5em) {
+  .lista-servicos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* desktop, a partir de 900px */
+@media (min-width: 56.25em) {
+  .cabecalho .container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .hero .container {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+
+  .hero h1 {
+    font-size: 2.75rem;
+  }
+
+  .lista-servicos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .secao-titulo {
+    font-size: 2.25rem;
+  }
+}
